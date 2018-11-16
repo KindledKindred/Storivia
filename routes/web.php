@@ -17,6 +17,6 @@ Route::get('/', function () {
 });
 */
 
-Route::get('/{app}', function () {
+Route::get('/{any}', function () {
     return view('vue_app'); //! 拡張子を付与すると動作しません
-})->where('app', '.*');
+})->where('any', '.*');

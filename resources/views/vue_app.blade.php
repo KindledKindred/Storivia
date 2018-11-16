@@ -9,11 +9,12 @@
         window.Laravel = window.Laravel || {};
         window.Laravel.csrfToken = "{{csrf_token()}}";
       </script>
-      <title>Laravel + Vue.js</title>
+      <title>Storivia</title>
     </head>
     <body>
       <div id="app"> <!-- マウント開始 -->
         <router-view></router-view>
+        failed to be mounted
       </div>
       <script src="{{ mix('js/app.js') }}"></script>
     </body>
