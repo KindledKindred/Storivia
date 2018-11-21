@@ -1,0 +1,113 @@
+<template>
+    <!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Slum Scrap</title>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway:700,400">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <?php wp_enqueue_script('jquery'); ?>
+</head>
+<body>
+  <header class="top-header">
+      <p class="site-title-sub">Table-top RPG</p>
+      <h1 class="site-title">SLUM SCRAP</h1>
+      <p class="site-description">Ever strong in the world that we made.</p>
+      <div class="buttons">
+        <a class="button version" href="<?php echo get_permalink(); ?>"></a>
+        <a class="button-showy" href="<?php echo get_permalink(); ?>">CHARACTER</a>
+      </div>
+  </header>
+  <section class="rules" id="rules">
+    <h2 class="heading">RULES</h2>
+    <div class="rules-wrapper">
+        <div class="rule-box">
+          <a href="<?php echo get_permalink(15); ?>"><i class="rule-icon fas fa-id-badge"></i></a>
+          <div class="rule-title">MAKING</div>
+          <p class="rule-text">
+            キャラクターの作成方法
+          </p>
+        </div>
+        <div class="rule-box">
+          <a href="<?php echo get_permalink(20); ?>"><i class="rule-icon fas fa-route"></i></a>
+          <div class="rule-title">FIELD</div>
+          <p class="rule-text">
+            フィールドでのルール
+          </p>
+        </div>
+        <div class="rule-box">
+          <a href="<?php echo get_permalink(22); ?>"><i class="rule-icon fa fa-crosshairs"></i></a>
+          <div class="rule-title">BATTLE</div>
+          <p class="rule-text">
+            戦闘のルール
+          </p>
+        </div>
+      </div>
+  </section>
+  <section class="data">
+    <h2 class="heading">DATA</h2>
+    <div class="datas-wrapper">
+        <div class="data-box tree">
+          <img class="data-image" src="<?php echo get_template_directory_uri(); ?>/images/tree.jpg" alt="CHIP">
+          <div class="data-description">
+            <div class="data-description-inner">
+              <p class="data-text">
+                UPDATE<br>
+                アップデート情報<br>
+                <a href="<?php echo get_permalink(24); ?>" class="button-ghost">NEWS</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="data-box building">
+          <img class="data-image" src="<?php echo get_template_directory_uri(); ?>/images/building.jpg" alt="MOD">
+          <div class="data-description">
+            <div class="data-description-inner">
+              <p class="data-text">
+                MOD<br>
+                武器・身体改造<br>
+                <a href="<?php echo get_permalink(); ?>" class="button-ghost">MOD</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="data-box lake">
+          <img class="data-image" src="<?php echo get_template_directory_uri(); ?>/images/lake.jpg" alt="SKILL">
+          <div class="data-description">
+            <div class="data-description-inner">
+              <p class="data-text">
+                SKILL<br>
+                武器スキル<br>
+                <a href="<?php echo get_permalink(27); ?>" class="button-ghost">SKILL</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="data-box sky">
+          <img class="data-image" src="<?php echo get_template_directory_uri(); ?>/images/sky.jpg" alt="ITEM">
+          <div class="data-description">
+            <div class="data-description-inner">
+              <p class="data-text">
+                ITEM<br>
+                消耗品<br>
+                <a href="<?php echo get_permalink(); ?>" class="button button-ghost">ITEM</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  <section class="contact">
+    <h2 class="heading">CONTACT</h2>
+    <form class="contact-form">
+      <input type="text" name="name" placeholder="NAME">
+      <textarea name="message" placeholder="MESSAGE"></textarea>
+      <input type="submit" value="SEND">
+    </form>
+  </section>
+<?php get_footer(); ?>
+</template>

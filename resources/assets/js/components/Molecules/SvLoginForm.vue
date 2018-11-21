@@ -25,13 +25,13 @@
             ul.validation-errors
                 li(v-if="validation.password.required") パスワードが未入力です
         .form-actions
-            SvButton(:disabled="disableLoginAction" @click="handleClick") ログイン
-            p.login-progress(v-if="progress") ログイン中．．．
+            SvButton(:disabled="disableLoginAction" @click="handleClick") Login
+            p.login-progress(v-if="progress") Logging．．．
             p.login-error(v-if="error") @{{ error }}
 </template>
 
 <script>
-import SvButton from '@/components/Atoms/SvButton'
+import SvButton from '../Atoms/SvButton'
 
 const REGEX_EMAIL = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 const required = val => !!val.trim()
@@ -45,7 +45,7 @@ export default {
 
     props: {
         onlogin: {
-            type: Funcion,
+            type: Function,
             required: true
         }
     },

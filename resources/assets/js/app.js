@@ -14,15 +14,15 @@ window.Vue = require('vue')
 
 
 //routes定義
-import FrontView from './components/Templates/FrontView.vue'
-import LoginModal from './components/Templates/LoginModal.vue'
-import WorkspaceView from './components/Templates/WorkspaceView.vue'
-import ActionView from './components/Templates/ActionView.vue'
-import CharacterView from './components/Templates/CharacterView.vue'
-import WorldView from './components/Templates/WorldView.vue'
-import ActionModal from './components/Templates/ActionModal.vue'
-import CharacterModal from './components/Templates/CharacterModal.vue'
-import WorldModal from './components/Templates/WorldModal.vue'
+import FrontView from './components/Templates/SvFrontView.vue'
+import LoginModal from './components/Templates/SvLoginModal.vue'
+import WorkspaceView from './components/Templates/SvWorkspaceView.vue'
+import ActionView from './components/Templates/SvActionView.vue'
+import CharacterView from './components/Templates/SvCharacterView.vue'
+import WorldView from './components/Templates/SvWorldView.vue'
+import ActionModal from './components/Templates/SvActionModal.vue'
+import CharacterModal from './components/Templates/SvCharacterModal.vue'
+import WorldModal from './components/Templates/SvWorldModal.vue'
 
 Vue.use(VueRouter)
 const router = new VueRouter ({
