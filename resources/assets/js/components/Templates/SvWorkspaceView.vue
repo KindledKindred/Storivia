@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-	svHomeNavigation
+	SvHomeNavigation
 	.row
 		.col-md-6
 			img(src="../../../images/bg.png")
@@ -13,13 +13,13 @@ div
 </template>
 
 <script>
-import svHomeNavigation from '../Molecules/SvHomeNavigation'
+import SvHomeNavigation from '../Molecules/SvHomeNavigation'
 
 export default {
-	name: 'SvWorkSpaceView',
+	name: 'SvWorkspaceView',
 
 	components: {
-		svHomeNavigation
+		SvHomeNavigation
 	}
 }
 </script>

@@ -6,7 +6,7 @@ div
 			SvActionWindow
 		.col-md-4
 			SvNoteWindow
-			SvReflrectionWindow
+			SvReflectionWindow
 </template>
 
 <script>
@@ -16,6 +16,13 @@ import SvNoteWindow from '../Organisms/SvNoteWindow'
 import SvReflectionWindow from '../Organisms/SvReflectionWindow'
 
 export default {
-	name: 'SvActionView'
+	name: 'SvActionView',
+
+	components: {
+		SvPlotNavigation,
+		SvActionWindow,
+		SvNoteWindow,
+		SvReflectionWindow
+	}
 }
 </script>
