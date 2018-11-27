@@ -9,7 +9,7 @@ export default {
 
     props: {
         disabled: {
-            tyle: Boolean,
+            type: Boolean,
             default: false
         },
         type: {

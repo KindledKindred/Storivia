@@ -4,27 +4,10 @@ div
 		h1.site-title STORIVIA
 		p.site-description support for plot writting
 		div.buttons
-			SvButton(@click="handleClick") Login
+			router-link(tag="button" to="/workspace") Workspace
 </template>
 
 <script>
-/*
-export default {
-  data() {
-    return {
-      title: "Laravel + Vue.js!",
-      message: "Initialize"
-    };
-  },
-  methods: {
-    editButton: function() {
-      alert("edit");
-      this.title = "Welcome to Vue.js!";
-      this.message = "This is a sample application.";
-    }
-  }
-};
-*/
 </script>
 
 <style lang="css" scoped>
