@@ -11,6 +11,8 @@ class ScenesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Models\Scene::class, 50)->create()->each(function ($u) {
+            $u->posts()->save(factory(App\Post::class)->make());
+        });
     }
 }

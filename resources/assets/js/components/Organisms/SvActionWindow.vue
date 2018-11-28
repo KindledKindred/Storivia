@@ -10,6 +10,14 @@ import SvWindowHeader from '../Molecules/SvWindowHeader'
 import SvActionPanel from '../Molecules/SvActionPanel'
 
 export default {
-	name: 'SvActionWindow'
+	name: 'SvActionWindow',
+
+	components: {
+		SvWindowHeader,
+		SvActionPanel
+	}
 }
 </script>
+
+<style lang="stylus" scoped>
+</style>

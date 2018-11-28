@@ -16,7 +16,7 @@ class CreateReflectionsTable extends Migration
         Schema::create('reflections', function (Blueprint $table) {
             $table->increments('reflection_id');
             $table->text('reflection');
-            $table->int('animation_id')->nullable()->change();
+            $table->integer('animation_id')->nullable()->change();
             $table->timestamps();
         });
     }

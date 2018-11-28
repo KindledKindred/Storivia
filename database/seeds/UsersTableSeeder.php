@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ReflectionsTableSeeder extends Seeder
+class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class ReflectionsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Reflection::class, 50)->create()->each(function ($u) {
+        factory(App\Models\User::class, 50)->create()->each(function ($u) {
             $u->posts()->save(factory(App\Post::class)->make());
         });
     }

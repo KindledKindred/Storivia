@@ -15,10 +15,10 @@ class CreateScenePanelsTable extends Migration
     {
         Schema::create('scenepanels', function (Blueprint $table) {
             $table->increments('scenepanel_id');
-            $table->int('user_id');
-            $table->int('scene_id');
-            $table->int('light');
-            $table->int('sound');
+            $table->integer('user_id');
+            $table->integer('scene_id');
+            $table->integer('light');
+            $table->integer('sound');
             $table->text('scenepanel_note')->nullable()->change();
             $table->timestamps();
         });

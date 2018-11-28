@@ -11,6 +11,8 @@ class ActionsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Models\Action::class, 50)->create()->each(function ($u) {
+            $u->posts()->save(factory(App\Post::class)->make());
+        });
     }
 }

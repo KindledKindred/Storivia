@@ -228,4 +228,7 @@ return [
 
     ],
 
+    //以下，追加コード
+    'faker_locale' => 'ja_JP'
+
 ];

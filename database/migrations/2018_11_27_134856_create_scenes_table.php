@@ -15,7 +15,7 @@ class CreateScenesTable extends Migration
     {
         Schema::create('scenes', function (Blueprint $table) {
             $table->increments('scene_id');
-            $table->int('user_id');
+            $table->integer('user_id');
             $table->text('scene_note')->nullable()->change();
             $table->timestamps();
         });
