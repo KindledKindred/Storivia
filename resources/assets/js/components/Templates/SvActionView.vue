@@ -2,11 +2,12 @@
 div
 	SvPlotNavigation
 	keep-alive.row
-		.col-md-8
-			SvActionWindow
-		.col-md-4
-			SvNoteWindow
-			SvReflectionWindow
+		.contents_wrapper
+			.col-md-8.contents_main
+				SvActionWindow
+			.col-md-4.contents_sub
+				SvNoteWindow
+				SvReflectionWindow
 </template>
 
 <script>
@@ -26,3 +27,9 @@ export default {
 	}
 }
 </script>
+
+<style lang="stylus">
+@import "../../../stylus/_variables.styl"
+// .contents_wrapper を読み込む
+@import "../../../stylus/_extend.styl"
+</style>

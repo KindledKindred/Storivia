@@ -1,6 +1,6 @@
 
 // Body
-$body-bg: #f5f8fa;
+$body-bg: #111;
 
 // Borders
 $laravel-border-color: darken($body-bg, 10%);
@@ -21,13 +21,13 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 $font-family-sans-serif: "Raleway", sans-serif;
 $font-size-base: 14px;
 $line-height-base: 1.6;
-$text-color: #636b6f;
+$text-color: rgb(235, 235, 235);
 
 // Navbar
-$navbar-default-bg: #fff;
+$navbar-default-bg: rgb(6, 8, 27);
 
 // Buttons
-$btn-default-color: $text-color;
+$btn-default-color: $brand-primary;
 
 // Inputs
 $input-border: lighten($text-color, 40%);

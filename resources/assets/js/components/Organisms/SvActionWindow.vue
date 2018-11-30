@@ -1,23 +1,27 @@
 <template lang="pug">
-#action
-	SvWindowHeader Action
-	SvActionPanel
+#action.window
+	span.window_title Action
+	p
+		SvActionPanel
+	SvButton パネル追加
 	
 </template>
 
 <script>
-import SvWindowHeader from '../Molecules/SvWindowHeader'
 import SvActionPanel from '../Molecules/SvActionPanel'
 
 export default {
 	name: 'SvActionWindow',
 
 	components: {
-		SvWindowHeader,
 		SvActionPanel
 	}
 }
 </script>
 
 <style lang="stylus" scoped>
+@import "../../../stylus/_variables.styl"
+// .windowを読み込む
+@import "../../../stylus/_extend.styl"
 </style>
+
