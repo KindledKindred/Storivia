@@ -16,6 +16,7 @@ class CreateActionsTable extends Migration
         Schema::create('actions', function (Blueprint $table) {
             $table->increments('action_id');
             $table->integer('user_id');
+            $table->text('function31');
             $table->integer('scene_id');
             $table->integer('character_id');
             $table->text('target')->nullable()->change();

@@ -1,7 +1,6 @@
 <template lang="pug">
-#note.window
-	span.window_title Note
-	p note
+textarea.form-control(rows="5" v-model="note" placeholder="メモ欄")#note.window
+	//-textarea.form-control(rows="5" v-model="note" placeholder="自由にメモを取ることができます")
 	
 </template>
 

@@ -1,67 +1,77 @@
 <template lang="pug">
 <!--script(type="text/x-template" id="modal-template")-->
-transition
-    .modal-mask(@click.self="$emit('closeModal')")
-        .modal-wrapper
-            .modal-container
-            .modal-header
-                slot(name="header") default header
-            
-            .modal-body
-                slot(name="body") default body
-            
-            .modal-footer
-                slot(name="footer") default footer
+transition(name="modal" appear)
+	.modal.modal-overlay(@click.self="$emit('close')")
+		.modal-window
+			.modal-content
+				slot empty content
+			.modal-footer
+				slot(name="footer")
+					button(@click="$emit('close')") 編集
 </template>
 
 <script>
 export default {
-    name: 'SvModal',
-
-    data() {
-        return {
-            showModal: true
-        }
-    },
-
-    methods: {
-        closeModal () {
-            showModal = false
-        }
-    }
+	name: 'SvModal'
 }
 </script>
 
 <style lang="stylus" scoped>
-.modal-mask
+@import "../../../stylus/_variables.styl"
+
+.modal {
+  &.modal-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: fixed;
-    z-index: 9998;
+    z-index: 30;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .5);
-    display: table;
-    transition: opacity .3s ease;
+		width: 100%;
+		height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
 
-.modal-wrapper
-    display: table-cell;
-    vertical-align: middle;
+  &-window {
+    background: _background-color;
+    border-radius: 4px;
+    overflow: hidden;
+  }
 
-.modal-container 
-    width: 300px;
-    margin: 0px auto;
-    padding: 20px 30px;
-    background-color: #fff;
-    border-radius: 2px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-    transition: all .3s ease;
-    font-family: Helvetica, Arial, sans-serif;
+  &-content {
+		background: _background-color;
+    padding: 10px 20px;
+  }
 
-.modal-header h3
-    margin-top: 0;
-    color: #42b983;
+  &-footer {
+    background-color: _background-color;
+    padding: 10px;
+    text-align: right;
+  }
+}
 
-.modal-body
-    margin: 20px 0;
+// オーバーレイのトランジション
+.modal-enter-active, .modal-leave-active {
+  transition: opacity 0.4s;
+
+  // オーバーレイに包含されているモーダルウィンドウのトランジション
+  .modal-window {
+    transition: opacity 0.4s, transform 0.4s;
+  }
+}
+
+// ディレイを付けるとモーダルウィンドウが消えた後にオーバーレイが消える
+.modal-leave-active {
+  transition: opacity 0.6s ease 0.4s;
+}
+
+.modal-enter, .modal-leave-to {
+  opacity: 0;
+
+  .modal-window {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
 </style>
