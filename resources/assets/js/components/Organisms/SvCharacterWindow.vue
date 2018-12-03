@@ -1,8 +1,9 @@
 <template lang="pug">
 #character.window
 	span.window_title キャラクター
-	p
-		SvActionPanel
+	- for (character in characters)
+		p
+			SvCharacterPanel
 	footer
 		button.btn.btn-primary(@click="openModal") パネル追加
 
@@ -27,7 +28,7 @@
 					.form-part.col-md-6
 						label.form-label 性別
 						input.form-control(v-model="character_sex" placeholder="性別")
-//      row
+			row
 				.form-group
 					.form-part.col-md-12
 						label.form-label 外見
@@ -42,14 +43,14 @@
 </template>
 
 <script>
-import SvActionPanel from '../Molecules/SvActionPanel'
+import SvCharacterPanel from '../Molecules/SvCharacterPanel'
 import SvModal from '../Templates/SvModal'
 
 export default {
-	name: 'SvActionWindow',
+	name: 'SvCharacterWindow',
 
 	components: {
-		SvActionPanel,
+		SvCharacterPanel,
 		SvModal
 	},
 
@@ -75,6 +76,7 @@ export default {
 @import "../../../stylus/_extend.styl"
 
 footer
-	text-align right
+	text-align center
+	margin-top 8px
 	padding 4px
 </style>

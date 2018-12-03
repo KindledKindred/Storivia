@@ -8,13 +8,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
-import VuexORM from '@vuex-orm/core'
+//import VuexORM from '@vuex-orm/core'
 
 require('./bootstrap')
 
 window.Vue = require('vue')
 
-//routesa読み込み
+//route読み込み
 import FrontView from './components/Templates/SvFrontView.vue'
 import LoginModal from './components/Templates/SvLoginModal.vue'
 import WorkspaceView from './components/Templates/SvWorkspaceView.vue'
@@ -25,11 +25,16 @@ import ActionModal from './components/Templates/SvActionModal.vue'
 import CharacterModal from './components/Templates/SvCharacterModal.vue'
 import WorldModal from './components/Templates/SvWorldModal.vue'
 
+//store読み込み
+import store from './store/index'
+
 //database読み込み
+/*
 import Action from './Models/Action'
 import Character from './Models/Character'
 import World from './Models/World'
 import WorldPanel from './Models/WorldPanel'
+*/
 
 //route定義
 Vue.use(VueRouter)
@@ -88,16 +93,16 @@ const router = new VueRouter ({
 
 //database定義
 Vue.use(Vuex)
-
+/*
 const database = new VuexORM.Database()
 
 database.register(Action, actions)
 database.register(Character,characters)
 database.register(World, worlds)
 database.register(WorldPanel, world_panels)
-
+*/
 const state = {
-    entities: {
+    /*entities: {
         actions: {
             data: {}
         },
@@ -111,13 +116,14 @@ const state = {
             data:{}
         }
     },
+    */
     auth: {
         token: null,
         userId: null
     },
     //以降にVuex.storeコンストラクタのstoreオプションの初期化を記述
     action: {
-        action_id: null,
+        id: null,
         function31: [
             '01. 留守・閉じ込め',
             '02. 禁止',
@@ -161,14 +167,16 @@ const state = {
         
     ]
 }
+/*
 const store = new Vuex.Store({
-    plugins: [VuexORM.install(database)],
-    /*state,
-    getters,
+    //plugins: [VuexORM.install(database)],
+    state,
+    /*getters,
     actions,
     mutations,
-    strict: process.env.NODE_ENV !== 'production'*/
+    strict: process.env.NODE_ENV !== 'production'
 })
+*/
 
 export default new Vue({
     router,
