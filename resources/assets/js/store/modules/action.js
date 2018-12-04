@@ -6,7 +6,8 @@ const state = {
             function31_id: 1,
             scene_id: 1,
             character_id: 1,
-            target: 'ここに行動主の行動動機を記載できます．',
+            target: '行動対象（人・モノなど）',
+            motive: 'ここに行動主の行動動機を記載できます．',
             action_note: '何でもメモしてください．'
         }
     ]

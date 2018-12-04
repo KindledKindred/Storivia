@@ -1,8 +1,9 @@
 <template lang="pug">
 #action.window
 	span.window_title 行動
-	p
-		SvActionPanel
+	.container-fluid
+		row
+			SvActionPanel.col-md-4(v-for="action in actions" :key="action.id")
 	footer
 		button.btn.btn-primary(@click="openModal") パネル追加
 
@@ -13,19 +14,18 @@
 				.form-group
 						.form-part.col-md-6
 							label.form-label 機能
-							input.form-control(v-model="function31" placeholder="機能")
+							select.form-control.selectpicker(v-model="function31_id")
+								option(v-for="function31 in function31s" :key="function31.id") {{ function31.name }}
 						.form-part.col-md-6
 							label.form-label シーン
-							input.form-control(v-model="scene_id" placeholder="シーン")
+							select.form-control(v-model="scene_id")
+								option(v-for="worldPanel in worldPanels" :key="worldPanel.id") {{ worldPanel.name }}
 			row
 				.form-group
 					.form-part.col-md-6
-						label.form-label 行動主
-						input.form-control(v-model="character_id" placeholder="行動主")
-				.form-group
-					.form-part.col-md-6
-						label.form-label 行動対象
-						input.form-control(v-model="target" placeholder="行動対象")
+						label.form-label 行動者
+						select.form-control(v-model="character_id")
+							option(v-for="character in characters" :key="character.id") {{ character.name }}
 			row
 				.form-group
 					.form-part.col-md-12
@@ -37,13 +37,15 @@
 						label.form-label メモ
 						textarea.form-control(rows="5" v-model="action_note" placeholder="自由にメモを取ることができます")
 		template(slot="footer")
-			button.btn.btn-primary(@click="addAction") 追加
+			button.btn.btn-primary(@click="ADD_ACTION(function31.id, scene_id, character_id, motive, action_note)") 追加
 
 </template>
 
 <script>
 import SvActionPanel from '../Molecules/SvActionPanel'
 import SvModal from '../Templates/SvModal'
+import * as types from '../../store/mutation-types';
+import { mapState, mapGetters, mapActions }  from 'vuex'
 
 export default {
 	name: 'SvActionWindow',
@@ -53,43 +55,30 @@ export default {
 		SvModal
 	},
 
-  data () {
+	data () {
     return {
-			modal: false,
-
-			actions: [],
-			new_action: {
-				new_character_id: 0,
-				new_target: '',
-				new_scene_id: 0,
-				new_motive: '',
-				new_action_note: ''
-			}
+      modal: false
     }
-	},
-	
-  methods: {
-		//パネル編集のモーダル処理
-    openModal() {
+  },
+
+	methods: {
+		// modalの開閉処理
+		openModal() {
       this.modal = true
     },
     closeModal() {
       this.modal = false
 		},
-		
-		//axios利用
-		fecthActions: function() {
-			axios.get('/api/get_actions').then((res) => {
-				this.actions = res.actions
-			})
-		},
-		addAction: function() {
-			axios.post('/api/add', {
-				character_id: this.new_character_id,
+		// パネル追加
+		...mapActions([types.ADD_ACTION])
+	},
 
-			})
-		}
-  }
+	computed: {
+		...mapState(['actions']),
+		...mapState(['characters']),
+		...mapState(['worldPanels']),
+		...mapState(['function31s'])
+	}
 }
 </script>
 

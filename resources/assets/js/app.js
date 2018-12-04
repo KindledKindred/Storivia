@@ -26,7 +26,7 @@ import CharacterModal from './components/Templates/SvCharacterModal.vue'
 import WorldModal from './components/Templates/SvWorldModal.vue'
 
 //store読み込み
-import store from './store/index'
+import store from './store'
 
 //database読み込み
 /*
