@@ -237,20 +237,23 @@ export default new Vuex.Store ({
     },
 
     actions: {
-        // ADD_XXX
+        // ADD_XXX の定義
         // TODO: ADD_WORLD, ADD_WORLDPANEL
         [types.ADD_ACTION](
             { commit },
-            function31_id,
-            scene_id,
-            character_id,
-            motive,
-            action_note
+            {
+                function31_id,
+                worldPanel_id,
+                character_id,
+                motive,
+                action_note
+            }
         )
         {
             let newAction = {
+                id: action.index, //XXX: ここがわかりません
                 function31_id: function31_id,
-                scene_id: scene_id,
+                worldPanel_id: worldPanel_id,
                 character_id: character_id,
                 motive: motive,
                 action_note: action_note
@@ -262,12 +265,14 @@ export default new Vuex.Store ({
 
         [types.ADD_CHARACTER](
             { commit },
-            name,
-            role_id,
-            age,
-            sex,
-            app,
-            character_note
+            {
+                name,
+                role_id,
+                age,
+                sex,
+                app,
+                character_note
+            }
         )
         {
             let newCharacter = {
@@ -292,6 +297,21 @@ export default new Vuex.Store ({
         },
         [types.ADD_CHARACTER](state, payload) {
             state.characters.push(payload.data);
+        },
+    },
+
+    getters: {
+        getCharacterbyId: (state) => (id) => {
+            return state.actions.find(action => action.id === id)
+        },
+        getCharacterbyId: (state) => (id) => {
+            return state.characters.find(character => character.id === id)
+        },
+        getWorldPanelbyId: (state) => (id) => {
+            return state.worldPanels.find(worldPanel => worldPanel.id === id)
+        },
+        getFunction31byId: (state) => (id) => {
+            return state.function31s.find(function31 => function31.id === id)
         },
     }
 })

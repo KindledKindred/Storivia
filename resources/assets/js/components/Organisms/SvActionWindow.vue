@@ -12,32 +12,39 @@
 		.form.container
 			row
 				.form-group
-						.form-part.col-md-6
-							label.form-label 機能
-							select.form-control.selectpicker(v-model="function31_id")
-								option(v-for="function31 in function31s" :key="function31.id") {{ function31.name }}
-						.form-part.col-md-6
-							label.form-label シーン
-							select.form-control(v-model="scene_id")
-								option(v-for="worldPanel in worldPanels" :key="worldPanel.id") {{ worldPanel.name }}
-			row
-				.form-group
-					.form-part.col-md-6
+					.form-part.col-md-4
+						label.form-label 機能
+						.table.form-inline
+							select.form-control.selectpicker.table-select(v-model="function31_id")
+								option(v-for="function31 in function31s" :key="function31.id" :value="function31.id") {{ function31.name }}
+							button.btn.btn-default.btn-icon.form-control(@click="")
+								i.glyphicon.glyphicon-info-sign
+					.form-part.col-md-4
+						label.form-label シーン
+						.table.form-inline
+							select.form-control.table-select(v-model="worldPanel_id")
+								option(v-for="worldPanel in worldPanels" :key="worldPanel.id" :value="worldPanel.id") {{ worldPanel.name }}
+							button.btn.btn-default.btn-icon.form-control(@click="")
+								i.glyphicon.glyphicon-info-sign
+					.form-part.col-md-4
 						label.form-label 行動者
-						select.form-control(v-model="character_id")
-							option(v-for="character in characters" :key="character.id") {{ character.name }}
+						.table.form-inline
+							select.form-control.table-select(v-model="character_id")
+								option(v-for="character in characters" :key="character.id" :value="character.id") {{ character.name }}
+							button.btn.btn-default.btn-icon.form-control(@click="")
+								i.glyphicon.glyphicon-info-sign
 			row
 				.form-group
 					.form-part.col-md-12
 						label.form-label 動機
-						textarea.form-control(rows="3" v-model="motive" placeholder="動機")
+						textarea.form-control(rows="2" v-model="motive" placeholder="動機")
 			row
 				.form-group
 					.form-part.col-md-12
 						label.form-label メモ
 						textarea.form-control(rows="5" v-model="action_note" placeholder="自由にメモを取ることができます")
 		template(slot="footer")
-			button.btn.btn-primary(@click="ADD_ACTION(function31.id, scene_id, character_id, motive, action_note)") 追加
+			button.btn.btn-primary(@click="ADD_ACTION({function31_id, worldPanel_id, character_id, motive, action_note})") 追加
 
 </template>
 
@@ -91,5 +98,24 @@ footer
 	text-align center
 	margin-top 8px
 	padding 4px
+
+.btn-icon
+	display table-cell
+	margin-left 5%
+	padding 0
+	font-size 180%
+	background-color _background-color
+	color _white
+	border none
+	vertical-align middle
+
+.table
+	display table
+	margin 0
+
+.table-select
+	display table-cell
+	max-width 85%
+	min-width 85%
 </style>
 
