@@ -24,7 +24,11 @@ export default {
 			'actions',
 			'characters',
 			'worldPanels',
-			'function31s'
+			'function31s',
+			'nextActionId',
+			'nextCharacterId',
+			'nextWorldId',
+			'nextWorldPanelId',
 			]),
 
 		...mapGetters([
@@ -34,8 +38,9 @@ export default {
 		]),
 
 		function31_name : {
-			get() {
-				return getFunction31ById(function31_id).name
+			get(function31_id) {
+				const function31_tmp = this.getFunction31ById(function31_id)
+				return function31_tmp.name
 			}
 		}
 	} 

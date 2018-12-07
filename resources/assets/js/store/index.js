@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as types from './mutation-types'
+import { isContext } from 'vm';
 
 Vue.use(Vuex)
 
@@ -233,7 +234,13 @@ export default new Vuex.Store ({
                 name: '31. エンディング',
                 description: '',
             },
-        ]
+        ],
+
+        // 次に追加される各種stateを決め打ち
+        nextActionId: 2,
+        nextCharacterId: 4,
+        nextWorldId:2,
+        nextWorldPanelId: 4
     },
 
     actions: {
@@ -251,7 +258,7 @@ export default new Vuex.Store ({
         )
         {
             let newAction = {
-                id: action.index, //XXX: ここがわかりません
+                id: 0,
                 function31_id: function31_id,
                 worldPanel_id: worldPanel_id,
                 character_id: character_id,
@@ -286,32 +293,81 @@ export default new Vuex.Store ({
             commit(types.ADD_CHARACTER, {
                 data: newCharacter
             })
+        },
+
+        [types.ADD_WORLD](
+            { commit },
+            {
+                name,
+                world_note
+            }
+        )
+        {
+            let newWorld = {
+                name: name,
+                world_note: world_note
+            }
+            commit(types.ADD_WORLD, {
+                data: newWorld
+            })
+        },
+
+        [types.ADD_WORLD_PANEL](
+            { commit },
+            {
+                name,
+                world_id,
+                light,
+                sound,
+                world_panel_note
+            }
+        )
+        {
+            let newWorldPanel = {
+                name: name,
+                world_id: world_id,
+                light: light,
+                sound: sound,
+                world_panel_note: world_panel_note
+            }
+            commit(types.ADD_WORLD_PANEL, {
+                data: newWorldPanel
+            })
         }
     },
 
     mutations: {
-        // ADD_XXX
-        // TODO: 追加場所をidによって上下変更？分岐は？逆行は？
         [types.ADD_ACTION](state, payload) {
-            state.actions.push(payload.data);
+            payload.id = state.nextActionId
+            state.actions.push(payload.data)
+            state.nextActionId++
         },
         [types.ADD_CHARACTER](state, payload) {
-            state.characters.push(payload.data);
+            state.characters.push(payload.data)
+            state.nextCharacterId++
+        },
+        [types.ADD_WORLD](state, payload) {
+            state.worlds.push(payload.data)
+            state.nextWorldId++
+        },
+        [types.ADD_WORLD_PANEL](state, payload) {
+            state.worldPanels.push(payload.data)
+            state.nextWorldPanelId++
         },
     },
 
     getters: {
         getCharacterbyId: (state) => (id) => {
-            return state.actions.find(action => action.id === id)
+            return state.actions.filter(action => action.id === id)[0]
         },
         getCharacterbyId: (state) => (id) => {
-            return state.characters.find(character => character.id === id)
+            return state.characters.filter(character => character.id === id)[0]
         },
         getWorldPanelbyId: (state) => (id) => {
-            return state.worldPanels.find(worldPanel => worldPanel.id === id)
+            return state.worldPanels.filter(worldPanel => worldPanel.id === id)[0]
         },
         getFunction31byId: (state) => (id) => {
-            return state.function31s.find(function31 => function31.id === id)
+            return state.function31s.filter(function31 => function31.id === id)[0]
         },
     }
 })
