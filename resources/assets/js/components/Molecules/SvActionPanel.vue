@@ -1,13 +1,19 @@
 <template lang="pug">
 .panel
 	row
-		.function_name {{ function31_name }}
-		.world_name {{ worldPanel_name }}
-		.world_light {{ worldPanel_light }}
-		.scene_sound {{ worldPanel_sound }}
+		.function31_name.col-md-5
+			slot(name="function31_name")
+		.world_panel_name.col-md-5
+			slot(name="world_panel_name")
+		.world_panel_light.col-md-1
+			slot(name="world_panel_light")
+		.world_panel_sound.col-md-1
+			slot(name="worldPanel_sound")
 	row
-		.action_actior {{ character_name }}
-		.action_motive {{ action_motive }}
+		.character_name.col-md-3
+			slot(name="character_name")
+		.action_motive.col-md-9
+			slot(name="action_motive")
 </template>
 
 <script>

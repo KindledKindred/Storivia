@@ -247,7 +247,10 @@ export default new Vuex.Store ({
         // ADD_XXX の定義
         // TODO: ADD_WORLD, ADD_WORLDPANEL
         [types.ADD_ACTION](
-            { commit },
+            {
+                commit,
+                state
+            },
             {
                 function31_id,
                 worldPanel_id,
@@ -258,7 +261,7 @@ export default new Vuex.Store ({
         )
         {
             let newAction = {
-                id: 0,
+                id: state.nextActionId,
                 function31_id: function31_id,
                 worldPanel_id: worldPanel_id,
                 character_id: character_id,
@@ -271,7 +274,10 @@ export default new Vuex.Store ({
         },
 
         [types.ADD_CHARACTER](
-            { commit },
+            {
+                commit,
+                state
+            },
             {
                 name,
                 role_id,
@@ -283,6 +289,7 @@ export default new Vuex.Store ({
         )
         {
             let newCharacter = {
+                id: state.nextCharacterId,
                 name: name,
                 role_id: role_id,
                 age: age,
@@ -296,7 +303,10 @@ export default new Vuex.Store ({
         },
 
         [types.ADD_WORLD](
-            { commit },
+            {
+                commit,
+                state
+            },
             {
                 name,
                 world_note
@@ -304,6 +314,7 @@ export default new Vuex.Store ({
         )
         {
             let newWorld = {
+                id: state.nextWorldId,
                 name: name,
                 world_note: world_note
             }
@@ -313,7 +324,10 @@ export default new Vuex.Store ({
         },
 
         [types.ADD_WORLD_PANEL](
-            { commit },
+            {
+                commit,
+                state
+            },
             {
                 name,
                 world_id,
@@ -324,6 +338,7 @@ export default new Vuex.Store ({
         )
         {
             let newWorldPanel = {
+                id: state.nextWorldPanelId,
                 name: name,
                 world_id: world_id,
                 light: light,
@@ -338,7 +353,6 @@ export default new Vuex.Store ({
 
     mutations: {
         [types.ADD_ACTION](state, payload) {
-            payload.id = state.nextActionId
             state.actions.push(payload.data)
             state.nextActionId++
         },
@@ -357,7 +371,7 @@ export default new Vuex.Store ({
     },
 
     getters: {
-        getCharacterbyId: (state) => (id) => {
+        getActionbyId: (state) => (id) => {
             return state.actions.filter(action => action.id === id)[0]
         },
         getCharacterbyId: (state) => (id) => {
@@ -368,6 +382,11 @@ export default new Vuex.Store ({
         },
         getFunction31byId: (state) => (id) => {
             return state.function31s.filter(function31 => function31.id === id)[0]
+        },
+
+        getCharacterNameById: (state, getters) => (id) => {
+            const character = getters.getCharacterbyId(id)
+            return character.name
         },
     }
 })

@@ -3,7 +3,14 @@
 	span.window_title 行動
 	.container-fluid
 		row
-			SvActionPanel.col-md-4(v-for="action in actions" :key="action.id")
+			.panel_container(v-for="action in actions" :key="action.id")
+				SvActionPanel
+					template(slot="function31_name") idからプロパティを取得
+					template(slot="world_panel_name") test
+					template(slot="world_panel_light") test
+					template(slot="world_panel_sound") test
+					template(slot="character_name") test
+					template(slot="action.motive") {{ action.motive }}
 	footer
 		button.btn.btn-primary(@click="openModal") パネル追加
 
@@ -64,7 +71,33 @@ export default {
 
 	data () {
     return {
-      modal: false
+			modal: false,
+			
+			//storeに代入するプロパティの初期値
+			function31_id: 0,
+			worldPanel_id: 0,
+			character_id: 0,
+			motive: '',
+			action_note: '',
+			//storeを参照するオブジェクトの初期値
+			function31: {
+				id: '',
+				name: ''
+			},
+			character: {
+				id: '',
+				name: ''
+			},
+			world: {
+				id: '',
+				name: ''
+			},
+			worldPanel: {
+				id: '',
+				name: '',
+				light: 0,
+				sound: 0
+			},
     }
   },
 
@@ -81,10 +114,26 @@ export default {
 	},
 
 	computed: {
-		...mapState(['actions']),
-		...mapState(['characters']),
-		...mapState(['worldPanels']),
-		...mapState(['function31s'])
+		...mapState([
+			'actions',
+			'characters',
+			'worldPanels',
+			'function31s',
+			'nextActionId',
+			'nextCharacterId',
+			'nextWorldId',
+			'nextWorldPanelId',
+			]),
+
+		...mapGetters([
+			'getActionById',
+			'getCharacterById',
+			'getWorldPanelById',
+			'getFunction31ById',
+			'getCharacterNamebyId'
+		]),
+
+		
 	}
 }
 </script>
