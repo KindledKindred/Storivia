@@ -12,7 +12,7 @@ export default new Vuex.Store ({
             {
                 id: 1,
                 function31_id: 1,
-                scene_id: 1,
+                worldPanel_id: 1,
                 character_id: 1,
                 motive: 'ここに行動主の行動動機を記載できます．',
                 action_note: '何でもメモしてください．'
@@ -386,7 +386,23 @@ export default new Vuex.Store ({
 
         getCharacterNameById: (state, getters) => (id) => {
             const character = getters.getCharacterbyId(id)
-            return character.name
+            return character ? character.name : ''
+        },
+        getWorldPanelNameById: (state, getters) => (id) => {
+            const worldPanel = getters.getWorldPanelbyId(id)
+            return worldPanel ? worldPanel.name : ''
+        },
+        getWorldPanelLightById: (state, getters) => (id) => {
+            const worldPanel = getters.getWorldPanelbyId(id)
+            return worldPanel ? worldPanel.light : ''
+        },
+        getWorldPanelSoundById: (state, getters) => (id) => {
+            const worldPanel = getters.getWorldPanelbyId(id)
+            return worldPanel ? worldPanel.sound : ''
+        },
+        getFunction31NameById: (state, getters) => (id) => {
+            const function31 = getters.getFunction31byId(id)
+            return function31 ? function31.name : ''
         },
     }
 })

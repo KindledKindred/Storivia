@@ -5,11 +5,11 @@
 		row
 			.panel_container(v-for="action in actions" :key="action.id")
 				SvActionPanel
-					template(slot="function31_name") idからプロパティを取得
-					template(slot="world_panel_name") test
-					template(slot="world_panel_light") test
-					template(slot="world_panel_sound") test
-					template(slot="character_name") test
+					template(slot="function31_name") {{ getFunction31NameById(action.function31_id) }}
+					template(slot="world_panel_name") {{ getWorldPanelNameById(action.worldPanel_id) }}
+					template(slot="world_panel_light") {{ getWorldPanelLightById(action.worldPanel_id) }}
+					template(slot="world_panel_sound") {{ getWorldPanelSoundById(action.worldPanel_id) }}
+					template(slot="character_name") {{ getCharacterNameById(action.character_id) }}
 					template(slot="action.motive") {{ action.motive }}
 	footer
 		button.btn.btn-primary(@click="openModal") パネル追加
@@ -130,10 +130,13 @@ export default {
 			'getCharacterById',
 			'getWorldPanelById',
 			'getFunction31ById',
-			'getCharacterNamebyId'
-		]),
 
-		
+			'getCharacterNameById',
+			'getWorldPanelNameById',
+			'getWorldPanelLightById',
+			'getWorldPanelSoundById',
+			'getFunction31NameById'
+		]),
 	}
 }
 </script>
