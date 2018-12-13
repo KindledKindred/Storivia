@@ -3,7 +3,8 @@
 	span.window_title 行動
 	.container-fluid
 		row
-			.panel_container(v-for="action in actions" :key="action.id")
+			//- 行動パネルをプロップの31の機能(function31_id)順にソートして全表示
+			.panel_container(v-for="action in actions" :key="action.function31_id")
 				SvActionPanel
 					template(slot="function31_name") {{ getFunction31NameById(action.function31_id) }}
 					template(slot="world_panel_name") {{ getWorldPanelNameById(action.worldPanel_id) }}
@@ -51,7 +52,7 @@
 						label.form-label メモ
 						textarea.form-control(rows="5" v-model="action_note" placeholder="自由にメモを取ることができます")
 		template(slot="footer")
-			button.btn.btn-primary(@click="ADD_ACTION({function31_id, worldPanel_id, character_id, motive, action_note})") 追加
+			button.btn.btn-primary(@click="ADD_ACTION({function31_id, worldPanel_id, character_id, motive, action_note}); resetModel") 追加
 
 </template>
 
@@ -109,8 +110,18 @@ export default {
     closeModal() {
       this.modal = false
 		},
+
 		// パネル追加
-		...mapActions([types.ADD_ACTION])
+		...mapActions([types.ADD_ACTION]),
+
+		// パネル追加時にモーダルの入力内容を初期化
+		resetModel () {
+			this.function31_id = 0,
+			this.worldPanel_id = 0,
+			this.character_id =  0,
+			this.motive = '',
+			this.action_note = ''
+		}
 	},
 
 	computed: {

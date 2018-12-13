@@ -371,6 +371,14 @@ export default new Vuex.Store ({
     },
 
     getters: {
+        /***
+         * Stateの取得処理
+         * 1. オブジェクト取得 - Object
+         * 2. .name取得 - String
+         * 3. .note取得 - String(textarea用)
+         * 4. その他
+         */
+        // 1. オブジェクト取得
         getActionbyId: (state) => (id) => {
             return state.actions.filter(action => action.id === id)[0]
         },
@@ -384,6 +392,7 @@ export default new Vuex.Store ({
             return state.function31s.filter(function31 => function31.id === id)[0]
         },
 
+        // 2. .name取得 - String
         getCharacterNameById: (state, getters) => (id) => {
             const character = getters.getCharacterbyId(id)
             return character ? character.name : ''
