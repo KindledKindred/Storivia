@@ -4,7 +4,7 @@
 	.container-fluid
 		row
 			//- 行動パネルをプロップの31の機能(function31_id)順にソートして全表示
-			.panel_container(v-for="action in actions" :key="action.function31_id")
+			.panel_container(v-for="action in this.getActionsSortByFunction31Id")
 				SvActionPanel
 					template(slot="function31_name") {{ getFunction31NameById(action.function31_id) }}
 					template(slot="world_panel_name") {{ getWorldPanelNameById(action.worldPanel_id) }}
@@ -100,7 +100,7 @@ export default {
 				sound: 0
 			},
     }
-  },
+	},
 
 	methods: {
 		// modalの開閉処理
@@ -113,7 +113,6 @@ export default {
 
 		// パネル追加
 		...mapActions([types.ADD_ACTION]),
-
 		// パネル追加時にモーダルの入力内容を初期化
 		resetModel () {
 			this.function31_id = 0,
@@ -148,6 +147,13 @@ export default {
 			'getWorldPanelSoundById',
 			'getFunction31NameById'
 		]),
+
+		// パネル追加時に機能idでソート
+		// _.function は lodash というライブラリのもの
+		// sortByは破壊的(配列を上書きする)な昇順ソート処理
+		getActionsSortByFunction31Id () {
+			return _.sortBy(this.actions, ['function31_id'])
+		}
 	}
 }
 </script>
