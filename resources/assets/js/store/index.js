@@ -21,7 +21,7 @@ export default new Vuex.Store ({
         characters: [
             {
                 id: 1,
-                name: '名前，通り名，略称，称号，階級',
+                name: 'キャラ名',
                 role_id: 1,
                 age: '20',
                 sex: '不明',
@@ -41,17 +41,47 @@ export default new Vuex.Store ({
                 id: 3,
                 name: 'ラゴス',
                 role_id: 1,
-                age: '青年期～老年期',
+                age: '青年',
                 sex: '男性',
                 app: '特定の像は与えない',
                 character_note: 'ーこれもサンプルですー　ラゴスは南へと旅に出た．旅のための旅だった．'
             }
         ],
-        worlds: [
+        roles: [
             {
                 id: 1,
-                name: '土地や建物など舞台の土台',
-                world_note: '何でもメモしてください．'
+                name: '主人公',
+                description: ''
+            },
+            {
+                id: 2,
+                name: '敵対者',
+                description: '',
+            },
+            {
+                id: 3,
+                name: '贈与者',
+                description: ''
+            },
+            {
+                id: 4,
+                name: '助手',
+                description: ''
+            },
+            {
+                id: 5,
+                name: '被害者',
+                description: ''
+            },
+            {
+                id: 6,
+                name: '派遣者',
+                description: ''
+            },
+            {
+                id: 7,
+                name: '偽主人公',
+                description: ''
             }
         ],
         worldPanels: [
@@ -80,161 +110,167 @@ export default new Vuex.Store ({
         // プロップの31の機能．静的オブジェクト．
         function31s: [
             {
+                id: 0,
+                name: '00. 導入の状況',
+                description: '舞台の状況説明'
+            },
+            {
                 id: 1,
-                name: '01. 留守・閉じ込め',
-                description: '',
+                name: '01. 不在',
+                description: '家族やグループメンバーの留守，死亡，誘拐，監禁など',
             },
             {
                 id: 2,
                 name: '02. 禁止',
-                description: '',
+                description: '主人公が何かを禁じられる．あるいは社会に禁忌や危険な領域が存在する．',
             },
             {
                 id: 3,
                 name: '03. 違反',
-                description: '',
+                description: '[02. 禁止]が破られる．',
             },
             {
                 id: 4,
                 name: '04. 捜索',
-                description: '',
+                description: '敵対者が主人公の弱点，物語で重要な人やアイテムの在処，聖域などを探る．',
             },
             {
                 id: 5,
-                name: '05. 密告',
-                description: '',
+                name: '05. 漏洩',
+                description: '[04. 捜索]が密告などにより成就する．',
             },
             {
                 id: 6,
                 name: '06. 謀略',
-                description: '',
+                description: '敵対者が主人公を騙す，罠に嵌める，噂で陥れるなどをする',
             },
             {
                 id: 7,
-                name: '07. 黙認',
-                description: '',
+                name: '07. 幇助',
+                description: '主人公が半強制的あるいは気付かずに敵対者を助ける．または主人公の仲間が買収される．先に報酬が提示される代わりに，将来的な不幸が約束されることもある．',
             },
             {
                 id: 8,
-                name: '08. 加害または欠如',
-                description: '',
+                name: '08. 加害・欠如',
+                description: '敵対者が主人公側の成員や社会に危害を及ぼす．昼の光を奪う，無理な結婚を強いる，殺害を命じる，誘き出す，略奪する，すり替える，追放するなど．または配偶者，金品，目標と現在のギャップ，その他様々なものの欠如を感じる．',
             },
             {
                 id: 9,
-                name: '09. 調停',
-                description: '',
+                name: '09. 仲介・調停',
+                description: '主人公が出発を命じられたり頼まれたり，惨状や悲嘆を耳にしたり目撃したりする．あるいは逃れられない状況に身を置く．',
             },
             {
                 id: 10,
-                name: '10. 主人公の同意',
-                description: '',
+                name: '10. 決意・同意',
+                description: '主人公が出発を決意する．あるいは渋々同意する．',
             },
             {
                 id: 11,
-                name: '11. 主人公の出発',
-                description: '',
+                name: '11. 出発',
+                description: '[10. 決意・同意]のもと出発する．現状を再確認したり掘り下げることも．',
             },
             {
                 id: 12,
                 name: '12. 贈与者による試練',
-                description: '',
+                description: '贈与者が贈与前に主人公へ試練を課す．',
             },
             {
                 id: 13,
-                name: '13. 主人公の反応',
-                description: '',
+                name: '13. 反応',
+                description: '困難な試練を辛うじて達成する．あるいはギリギリで失敗する．贈与者自身が協力者となり，大きな困難を達成する．',
             },
             {
                 id: 14,
                 name: '14. 特別な手段の提供・獲得',
-                description: '',
+                description: '贈与者を協力者として得たり，秘儀，秘宝，パスワード，秘密の抜け道，強力な道具などを入手する．',
             },
             {
                 id: 15,
-                name: '15. 主人公の移動',
-                description: '',
+                name: '15. 移動',
+                description: '大掛かりな場面移動．新たな移動手段の獲得や強制的な移動など．飛行船，城外，タイムトラベル等．',
             },
             {
                 id: 16,
-                name: '16. 主人公の闘争・難題',
-                description: '',
+                name: '16. 闘争・難題',
+                description: '敵対者との闘争，困難な問題への対処．',
             },
             {
                 id: 17,
-                name: '17. 狙われる主人公',
-                description: '',
+                name: '17. 徴付け・被照準',
+                description: '主人公が特徴づけられ，敵対者に狙いを絞られる．庇護者の死，隠されていた主人公の露見，主人公の才能開花の確認等による照準移行',
             },
             {
                 id: 18,
-                name: '18. 敵対者に対する勝利',
-                description: '',
+                name: '18. 勝利',
+                description: '敵対者への完全なまたは一時的な勝利．戦闘，説得，逮捕，試合，脱出，耐久など．',
             },
             {
                 id: 19,
-                name: '19. 発端となった不幸・欠如の解消',
-                description: '',
+                name: '19. 不幸・欠如の解消',
+                description: '当初の目標の達成．呪いの解除，略奪品の回収，脅威の排除，和解，優勝，結婚など．',
             },
             {
                 id: 20,
-                name: '20. 主人公の帰還',
-                description: '',
+                name: '20. 帰還',
+                description: '[15. 移動]していた主人公の帰還．エンディングへ．場合によっては帰路のみを指し物語を続行．',
             },
             {
                 id: 21,
-                name: '21. 追跡される主人公',
-                description: '',
+                name: '21. 被追跡',
+                description: '[20. 帰還]中の主人公が密かに，あるいは荒々しく追跡される．物理的でなくとも，禍根が残っている様子も示す．',
             },
             {
                 id: 22,
-                name: '22. 主人公の救出',
-                description: '',
+                name: '22. 救助',
+                description: '[21. 被追跡]から救われる．追跡者の排除，誤解の解消，和解，匿われる，逃げ切りなど．',
             },
             {
                 id: 23,
-                name: '23. 主人公が身分を隠し帰還',
-                description: '',
+                name: '23. 隠蔽された到着',
+                description: '気づかれずに主人公が帰還し終える．仲間と合流，どこかへ去る，主人公の死を想起させるなど．',
             },
             {
                 id: 24,
                 name: '24. 偽主人公の主張',
-                description: '',
+                description: '主人公やその成員を名乗る者が出現し，主人公の功績を我が物と言い張る．',
             },
             {
                 id: 25,
                 name: '25. 主人公への難題',
-                description: '',
+                description: '[24. 偽主人公の主張]に対し，自身が真の主人公であることを証明する試練．',
             },
             {
                 id: 26,
                 name: '26. 難題の完遂',
-                description: '',
+                description: '[25. 主人公への難題]の解消．',
             },
             {
                 id: 27,
                 name: '27. 主人公への再認識',
-                description: '',
+                description: '[17. 徴付け]時の徴により主人公であることを再認識．目，指輪，思い出，特殊な道具，傷跡など．',
             },
             {
                 id: 28,
                 name: '28. 偽主人公や敵対者の露見',
-                description: '',
+                description: '[27. 主人公への再認識]により偽主人公または敵対者の虚偽が露見する．主人公が本物である，主人公やその成員への悪い噂は嘘であるなど．',
             },
             {
                 id: 29,
-                name: '29. 主人公の変身',
-                description: '',
+                name: '29. 変身',
+                description: '主人公の容姿が一般に良い方向へ変化する．衣装，顔，種族など．あるいは成員や土地の変化．最上位のグループ，豪邸，使用していた武器の特別な修理など．',
             },
             {
                 id: 30,
                 name: '30. 敵対者の処遇決定',
-                description: '',
+                description: '敵対者の完全な終結．勧善懲悪，赦免，復讐，諦観など．',
             },
             {
                 id: 31,
                 name: '31. エンディング',
-                description: '',
+                description: '物語としての終わり．主人公の結婚，優勝，昇格，死亡，失踪など．',
             },
         ],
+        note: '',
 
         // 次に追加される各種stateを決め打ち
         nextActionId: 2,
@@ -385,6 +421,9 @@ export default new Vuex.Store ({
         getCharacterbyId: (state) => (id) => {
             return state.characters.filter(character => character.id === id)[0]
         },
+        getRoleById: (state) => (id) => {
+            return state.roles.filter(role => role.id === id)[0]
+        },
         getWorldPanelbyId: (state) => (id) => {
             return state.worldPanels.filter(worldPanel => worldPanel.id === id)[0]
         },
@@ -396,6 +435,10 @@ export default new Vuex.Store ({
         getCharacterNameById: (state, getters) => (id) => {
             const character = getters.getCharacterbyId(id)
             return character ? character.name : ''
+        },
+        getRoleNameById: (state, getters) => (id) => {
+            const role = getters.getRoleById(id)
+            return role ? role.name : ''
         },
         getWorldPanelNameById: (state, getters) => (id) => {
             const worldPanel = getters.getWorldPanelbyId(id)

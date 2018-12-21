@@ -1,9 +1,15 @@
 <template lang="pug">
 #character.window
-	span.window_title キャラクター
-	- for (character in characters)
-		p
-			SvCharacterPanel
+	span.window_title CHARACTERS
+	.container-fluid
+		row
+			//- キャラクターパネルをロール(role_id)順にソートして全表示
+			.panel_container(v-for="character in this.getCharactersSortByRoleId")
+				SvCharacterPanel
+					template(slot="character_name") {{ character.name }}
+					template(slot="role_name") {{ getRoleNameById(character.role_id) }}
+					template(slot="character_age") {{ character.age }}
+					template(slot="character_sex") {{ character.sex }}
 	footer
 		button.btn.btn-primary(@click="openModal") パネル追加
 
@@ -12,39 +18,42 @@
 		.form.container
 			row
 				.form-group
-					.form-part.col-md-6
+					.form-part.col-md-4
 						label.form-label 名前
-						input.form-control(v-model="character_name" placeholder="名前")
-				.form-group
-					.form-part.col-md-6
-						label.form-label 機能
-						input.form-control(v-model="character_role" placeholder="機能")
-			row
-				.form-group
-					.form-part.col-md-6
+						input.form-control(v-model="name" placeholder="キャラクター名")
+					.form-part.col-md-4
+						label.form-label 役割
+						.table.form-inline
+							select.form-control.table-select(v-model="role_id")
+								option(v-for="role in roles" :key="role.id" :value="role.id") {{ role.name }}
+							button.btn.btn-default.btn-icon.form-control(@click="")
+								i.glyphicon.glyphicon-info-sign
+					.form-part.col-md-2
 						label.form-label 年齢
-						input.form-control(v-model="character_age" placeholder="年齢")
-				.form-group
-					.form-part.col-md-6
+						input.form-control(v-model="age" placeholder="不詳")
+					.form-part.col-md-2
 						label.form-label 性別
-						input.form-control(v-model="character_sex" placeholder="性別")
+						input.form-control(v-model="sex" placeholder="不詳")
 			row
 				.form-group
 					.form-part.col-md-12
 						label.form-label 外見
-						textarea.form-control(rows="2" v-model="character_app" placeholder="第一印象などを記述できます")
+						textarea.form-control(rows="2" v-model="app" placeholder="第一印象など")
 			row
 				.form-group
 					.form-part.col-md-12
 						label.form-label メモ
-						textarea.form-control(rows="5" v-model="act_note" placeholder="自由にメモを取ることができます")
+						textarea.form-control(rows="5" v-model="character_note" placeholder="自由にメモを取ることができます")
 		template(slot="footer")
-			button.btn.btn-primary(@click="edit") 追加
+			button.btn.btn-primary(@click="ADD_CHARACTER({name, role_id, age, sex, app, character_note})") 追加
+
 </template>
 
 <script>
 import SvCharacterPanel from '../Molecules/SvCharacterPanel'
 import SvModal from '../Templates/SvModal'
+import * as types from '../../store/mutation-types';
+import { mapState, mapGetters, mapActions }  from 'vuex'
 
 export default {
 	name: 'SvCharacterWindow',
@@ -54,19 +63,48 @@ export default {
 		SvModal
 	},
 
-  data() {
+	data () {
     return {
-      modal: false
+			modal: false,
     }
-  },
-  methods: {
-    openModal() {
+	},
+
+	methods: {
+		// modalの開閉処理
+		openModal() {
       this.modal = true
     },
     closeModal() {
       this.modal = false
-    },
-  }
+		},
+
+		// パネル追加
+		...mapActions([types.ADD_CHARACTER]),
+		// パネル追加時にモーダルの入力内容を初期化
+	},
+
+	computed: {
+		...mapState([
+			'characters',
+			'roles',
+			'nextCharacterId',
+			]),
+
+		...mapGetters([
+			'getCharacterById',
+			'getRoleById',
+
+			'getCharacterNameById',
+			'getRoleNameById'
+		]),
+
+		// パネル追加時に機能idでソート
+		// _.function は lodash というライブラリのもの
+		// sortByは破壊的(配列を上書きする)な昇順ソート処理
+		getCharactersSortByRoleId () {
+			return _.sortBy(this.characters, ['role_id'])
+		}
+	}
 }
 </script>
 
@@ -79,4 +117,23 @@ footer
 	text-align center
 	margin-top 8px
 	padding 4px
+
+.btn-icon
+	display table-cell
+	margin-left 5%
+	padding 0
+	font-size 180%
+	background-color _background-color
+	color _white
+	border none
+	vertical-align middle
+
+.table
+	display table
+	margin 0
+
+.table-select
+	display table-cell
+	max-width 85%
+	min-width 85%
 </style>

@@ -2,20 +2,22 @@
 .window
 	position relative
 	margin 2em 0
-	padding 0.5em 1em
-	border solid 2px _white
+	padding 8px
 	border-radius 8px
+	//box-shadow 4px 4px _light-shades
 	min-height 20vh
+	background _dark-shades
 	&_title
 		position absolute
 		display inline-block
 		top -13px
 		left 10px
-		padding 0 9px
+		padding 8px
 		line-height 1
 		font-size 19px
-		font-weight bold
-		background _background-color
+		border-radius 12px
+		box-shadow 0 0 1px _light-shades
+		background _dark-shades
 
 .contents_wrapper
 	margin-top 40px
@@ -23,16 +25,16 @@
 
 // Form，主に入力モーダルに適用
 input
-	background-color _background-color
+	background-color _light-shades
 	
 textarea
-	background-color _background-color
+	background-color _light-shades
 	color _white
 	max-width 100%
 	min-width 100%
 
 select
-	background-color: _background-color
+	background-color: _light-shades
 	color _white
 
 .form
@@ -43,5 +45,24 @@ select
 
 //Panel類コンポーネント
 .panel
-	background-color _background-color
-	color _white
+	margin-top 10px
+	padding 4px
+	background-color _light-shades
+	color _dark-shades
+	overflow hidden
+	line-height center
+	border-radius 10px
+	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
+	&_item
+		i
+			padding-right 4px
+			color _dark-shades
+	&_interface
+		padding 0
+		text-align right
+		.edit
+			margin-right 16px
+			color _light-accent
+		.remove
+			margin-right 8px
+			color _dark-accent

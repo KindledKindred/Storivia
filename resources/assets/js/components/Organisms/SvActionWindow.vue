@@ -1,6 +1,6 @@
 <template lang="pug">
 #action.window
-	span.window_title 行動
+	span.window_title ACTIONS
 	.container-fluid
 		row
 			//- 行動パネルをプロップの31の機能(function31_id)順にソートして全表示
@@ -11,7 +11,7 @@
 					template(slot="world_panel_light") {{ getWorldPanelLightById(action.worldPanel_id) }}
 					template(slot="world_panel_sound") {{ getWorldPanelSoundById(action.worldPanel_id) }}
 					template(slot="character_name") {{ getCharacterNameById(action.character_id) }}
-					template(slot="action.motive") {{ action.motive }}
+					template(slot="action_motive") {{ action.motive }}
 	footer
 		button.btn.btn-primary(@click="openModal") パネル追加
 
@@ -73,7 +73,7 @@ export default {
 	data () {
     return {
 			modal: false,
-			
+			/*
 			//storeに代入するプロパティの初期値
 			function31_id: 0,
 			worldPanel_id: 0,
@@ -99,6 +99,7 @@ export default {
 				light: 0,
 				sound: 0
 			},
+			*/
     }
 	},
 

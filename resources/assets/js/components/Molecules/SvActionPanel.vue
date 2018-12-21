@@ -1,18 +1,27 @@
 <template lang="pug">
 .panel
 	row
-		.function31_name.col-md-5
+		.panel_item.function31_name.col-md-3
+			i.glyphicon.glyphicon-cog
 			slot(name="function31_name")
-		.world_panel_name.col-md-5
+		.panel_item.col-md-5
+			i.glyphicon.glyphicon-map-marker
 			slot(name="world_panel_name")
-		.world_panel_light.col-md-1
+		.panel_item.col-md-1
+			i.glyphicon.glyphicon-lamp
 			slot(name="world_panel_light")
-		.world_panel_sound.col-md-1
+		.panel_item.col-md-1
+			i.glyphicon.glyphicon-volume-up
 			slot(name="world_panel_sound")
+		.panel_interface.col-md-2
+			i.edit.glyphicon.glyphicon-edit
+			i.remove.glyphicon.glyphicon-remove
 	row
-		.character_name.col-md-3
+		.panel_item.col-md-3
+			i.glyphicon.glyphicon-user
 			slot(name="character_name")
-		.action_motive.col-md-9
+		.panel_item.col-md-7
+			i.glyphicon.glyphicon-comment
 			slot(name="action_motive")
 </template>
 
@@ -23,26 +32,7 @@ import * as types from '../../store/mutation-types';
 import { mapState, mapGetters, mapActions }  from 'vuex'
 
 export default {
-	name: 'SvActionPanel',
-
-	computed: {
-		...mapState([
-			'actions',
-			'characters',
-			'worldPanels',
-			'function31s',
-			'nextActionId',
-			'nextCharacterId',
-			'nextWorldId',
-			'nextWorldPanelId',
-			]),
-
-		...mapGetters([
-			'getCharacterById',
-			'getWorldPanelById',
-			'getFunction31ById'
-		]),
-	} 
+	name: 'SvActionPanel'
 }
 </script>
 
