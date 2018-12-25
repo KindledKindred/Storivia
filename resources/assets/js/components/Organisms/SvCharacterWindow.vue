@@ -1,10 +1,9 @@
 <template lang="pug">
 #character.window
-	span.window_title CHARACTERS
 	.container-fluid
 		row
 			//- キャラクターパネルをロール(role_id)順にソートして全表示
-			.panel_container(v-for="character in this.getCharactersSortByRoleId")
+			.panel_container(v-for="character in this.getCharactersSortByRoleId" :character_id="character.id")
 				SvCharacterPanel
 					template(slot="character_name") {{ character.name }}
 					template(slot="role_name") {{ getRoleNameById(character.role_id) }}
@@ -117,16 +116,6 @@ footer
 	text-align center
 	margin-top 8px
 	padding 4px
-
-.btn-icon
-	display table-cell
-	margin-left 5%
-	padding 0
-	font-size 180%
-	background-color _background-color
-	color _white
-	border none
-	vertical-align middle
 
 .table
 	display table

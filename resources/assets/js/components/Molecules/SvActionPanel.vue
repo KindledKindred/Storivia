@@ -15,7 +15,7 @@
 			slot(name="world_panel_sound")
 		.panel_interface.col-md-2
 			i.edit.glyphicon.glyphicon-edit
-			i.remove.glyphicon.glyphicon-remove
+			i.remove.glyphicon.glyphicon-remove(@click="DELETE_ACTION(this.actions.indexOf(action))")
 	row
 		.panel_item.col-md-3
 			i.glyphicon.glyphicon-user

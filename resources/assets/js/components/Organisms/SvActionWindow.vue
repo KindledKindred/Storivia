@@ -1,10 +1,9 @@
 <template lang="pug">
 #action.window
-	span.window_title ACTIONS
 	.container-fluid
 		row
 			//- 行動パネルをプロップの31の機能(function31_id)順にソートして全表示
-			.panel_container(v-for="action in this.getActionsSortByFunction31Id")
+			.panel_container(v-for="action in this.getActionsSortByFunction31Id" :id="action.id")
 				SvActionPanel
 					template(slot="function31_name") {{ getFunction31NameById(action.function31_id) }}
 					template(slot="world_panel_name") {{ getWorldPanelNameById(action.worldPanel_id) }}
@@ -174,8 +173,8 @@ footer
 	margin-left 5%
 	padding 0
 	font-size 180%
-	background-color _background-color
-	color _white
+	background-color _dark-shades
+	color _light-accent
 	border none
 	vertical-align middle
 

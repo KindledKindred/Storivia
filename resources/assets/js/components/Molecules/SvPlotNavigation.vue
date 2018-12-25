@@ -28,3 +28,10 @@ export default {
 	name: 'SvPlotNavigation'
 }
 </script>
+
+<style lang="stylus" scoped>
+@import "../../../stylus/_variables.styl"
+// .navbarを読み込む
+@import "../../../stylus/_extend.styl"
+</style>
+

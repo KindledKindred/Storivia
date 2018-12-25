@@ -1,7 +1,11 @@
-//Window類コンポーネント
+// Navbar類コンポーネント
+.navbar
+	background-color _background-color
+	color _white
+// Window類コンポーネント
 .window
 	position relative
-	margin 2em 0
+	margin 1.6em 0
 	padding 8px
 	border-radius 8px
 	//box-shadow 4px 4px _light-shades
@@ -26,16 +30,20 @@
 // Form，主に入力モーダルに適用
 input
 	background-color _light-shades
-	
+	&::placeholder
+		color _dark-shades
+
 textarea
 	background-color _light-shades
-	color _white
+	color _dark-shades
 	max-width 100%
 	min-width 100%
+	&::placeholder
+		color _dark-shades
 
 select
 	background-color: _light-shades
-	color _white
+	color _dark-shades
 
 .form
 	&-part
@@ -43,7 +51,7 @@ select
 	&-label
 		padding 12px 0
 
-//Panel類コンポーネント
+// Panel類コンポーネント
 .panel
 	margin-top 10px
 	padding 4px
@@ -66,3 +74,13 @@ select
 		.remove
 			margin-right 8px
 			color _dark-accent
+
+.btn-icon
+	display table-cell
+	margin-left 5%
+	padding 0
+	font-size 180%
+	background-color _dark-shades
+	color _light-accent
+	border none
+	vertical-align middle

@@ -8,7 +8,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
-//import VuexORM from '@vuex-orm/core'
 import VueLodash from 'vue-lodash'
 
 Vue.use(VueLodash)

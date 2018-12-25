@@ -4,6 +4,30 @@ import * as types from './mutation-types'
 import { isContext } from 'vm';
 
 Vue.use(Vuex)
+/* TODO: ファイルを分割
+/***
+ * state
+ * - actions (reactive)
+ * - characters (reactive)
+ * - worldPanels (reactive)
+ * - roles
+ * - reflections
+ * - function31s
+ * - QandAs
+ * - note (reactive)
+ * - nextXXXid
+ * actions
+ * - types.ADD_XXX
+ * - types.UPDATE_XXX
+ * - types.DELETE_XXX
+ * mutations
+ * - ADD_XXX
+ * - UPDATE_XXX
+ * - DELETE_XXX
+ * getters
+ * - getXXXById
+ * - getXXXNameById
+ ***/
 
 export default new Vuex.Store ({
     state: {
@@ -47,6 +71,30 @@ export default new Vuex.Store ({
                 character_note: 'ーこれもサンプルですー　ラゴスは南へと旅に出た．旅のための旅だった．'
             }
         ],
+        worldPanels: [
+            {
+                id: 1,
+                name: 'ランドマークや部屋など具体的なシーン',
+                light: 2,
+                sound: 4,
+                world_panel_note: '何でもメモしてください．'
+            },
+            {
+                id: 2,
+                name: '水車小屋：昼',
+                light: 4,
+                sound: 2,
+                world_panel_note: 'ーこれはサンプルですー　村で１番小さい水車小屋．川の水量が少なくなってからはあまり動いていない．'
+            },
+            {
+                id: 3,
+                name: '父の書斎',
+                light: 2,
+                sound: 1,
+                world_panel_note: 'ーこれもサンプルですー　父の亡き後そのままにされている書斎だ．カーテンから漏れる陽光に舞い上がった埃が遊ぶように輝いている．'
+            }
+        ],
+        // 物語の７つの機能，静的オブジェクト
         roles: [
             {
                 id: 1,
@@ -82,29 +130,6 @@ export default new Vuex.Store ({
                 id: 7,
                 name: '偽主人公',
                 description: ''
-            }
-        ],
-        worldPanels: [
-            {
-                id: 1,
-                name: 'ランドマークや部屋など具体的なシーン',
-                light: 2,
-                sound: 4,
-                world_panel_note: '何でもメモしてください．'
-            },
-            {
-                id: 2,
-                name: '水車小屋：昼',
-                light: 4,
-                sound: 2,
-                world_panel_note: 'ーこれはサンプルですー　村で１番小さい水車小屋．川の水量が少なくなってからはあまり動いていない．'
-            },
-            {
-                id: 3,
-                name: '父の書斎',
-                light: 2,
-                sound: 1,
-                world_panel_note: 'ーこれもサンプルですー　父の亡き後そのままにされている書斎だ．カーテンから漏れる陽光に舞い上がった埃が遊ぶように輝いている．'
             }
         ],
         // プロップの31の機能．静的オブジェクト．
@@ -270,9 +295,118 @@ export default new Vuex.Store ({
                 description: '物語としての終わり．主人公の結婚，優勝，昇格，死亡，失踪など．',
             },
         ],
+
+        // Q&Aモーダルではアコーディオンを使用して各コンテンツを表示
+        // その際にidを指定する必要があるが，idに'#sv'を付与するスクリプトを動かすより
+        // 直接データ内にid_htmlを指定したほうが高速であるためこのようにした．
+        // ただし拡張により似た操作が増えるのであれば関数として切り出した方がよい．
+        QandAs: [
+            {
+                id: 1,
+                id_html: "sv1",
+                id_href: "#sv1",
+                question: 'アイデアが浮かばない',
+                answer: '散歩に出かけましょう．トイレまででも構いません．でもスマホか手帳は持って！アイデアは机を離れた時に出がちです．思い浮かんだことを全部メモしてください．全部です！'
+            },
+            {
+                id: 2,
+                id_html: "sv2",
+                id_href: "#sv2",
+                question: '何をすればいいのか分からない',
+                answer: '全ては「パネル追加」から始まります．もし「シーン」や「行動者」の選択肢が無いと感じたなら，右上の「Character」や「World」からキャラクターやシーンの舞台を追加することができます．もしどんな風にパネルを加えていいか分からない場合は，多くを空欄にしてもいいので数を作っていきましょう．完璧なものを作るより，不満なものを後で編集・削除するほうが遥かに簡単です．'
+            },
+            // Action
+            {
+                id: 10,
+                id_html: "sv10",
+                id_href: "#sv10",
+                question: '機能って？Actionって？',
+                answer: '（誰が）何をするかを決めたものです．「何をするか」には適した31の順序があり，あなたはその中からいくつかを選んで使うことができます．'
+            },
+
+            {
+                id: 11,
+                id_html: "sv11",
+                id_href: "#sv11",
+                question: 'どの機能を描けばいいのか分からない',
+                answer: '必ず描かなければいけない機能がない，ということが却って書くのを難しくしているのかもしれません．そんな時は「機能」を埋めずに一行メモだけを書いたパネルを量産するといいでしょう．「機能」は後から埋めることができますから．'
+            },
+            {
+                id: 12,
+                id_html: "sv12",
+                id_href: "#sv12",
+                question: '描きたい場面はあるがどの機能か分からない',
+                answer: 'シーンをひとまず機能抜きで書いてみるといいでしょう．後から他のパネルと見比べて，整合性のある機能を当てはめるのも一つの方法です．'
+            },
+            {
+                id: 13,
+                id_html: "sv13",
+                id_href: "#sv13",
+                question: 'どのキャラクターを出せばいいのか分からない',
+                answer: 'キャラクター欄を空欄にしてみましょう．それでもパネルを追加することができます．最後まで埋まらなければ，出番が少なかったり最後の登場から間隔の空いたキャラクターを選ぶといいでしょう．'
+            },
+            {
+                id: 14,
+                id_html: "sv14",
+                id_href: "#sv14",
+                question: 'キャラクターをどう活躍させればいいのか分からない',
+                answer: '活躍を彩るには感情移入させる必要があります．感情移入させるには苦労や苦難が必要です．辛い部分を演出してから，それを乗り越えるような場面を作ることが活躍として受け取られやすいでしょう．'
+            },
+            {
+                id: 15,
+                id_html: "sv15",
+                id_href: "#sv15",
+                question: '書きたいものと書いているものが違う',
+                answer: '思い描くものと書き出すもののギャップはだれしもが感じることです．その差は経験を積み重ねることで埋まっていきます．まずはできる範囲で完成させてみましょう．'
+            },
+            // Character
+            {
+                id: 20,
+                id_html: "sv20",
+                id_href: "#sv20",
+                question: 'キャラクターって何？',
+                answer: '登場人物……は正確じゃないですね．猫でもロボットでも物語上で何か行動を起こし作用するならば，それはキャラクターです．'
+            },
+            {
+                id: 21,
+                id_html: "sv21",
+                id_href: "#sv21",
+                question: '役割って何？',
+                answer: '役割は7種類あって，それぞれが特定の機能（Action）を果たします．物語の時間軸の中で，1つの役割にはたった1人のキャラクターしか適用できません．ただし途中まで敵対者だった人が助手になることがあるように，あるキャラクターの役割が物語の中で変化することもあります．別の見方をすれば，敵対者の役割が別のキャラクターに移ったとも捉えることができます．'
+            },
+            {
+                id: 22,
+                id_html: "sv22",
+                id_href: "#sv22",
+                question: '外見が想像できない',
+                answer: '詳細ではなくてもシルエットで構いません．●なら優しそうですし，▲は横柄で▼は強そうです．そのキャラにあったシルエットを用意してください．主人公にはそれとわかりやすい特徴を付けておくのが王道ですが，あえて没個性にしている作品も少なくありません．ただし没個性なだけでは本当に埋もれてしまうので，読み手の自己投影の邪魔にならない（日常で評価の対象とならない）部分で色を付けておきましょう．'
+            },
+            {
+                id: 23,
+                id_html: "sv23",
+                id_href: "#sv23",
+                question: 'シーンって何？',
+                answer: 'キャラクターが機能を果たす舞台です．かみ砕いて言えば場所や時間帯のことです．'
+            },
+            {
+                id: 24,
+                id_html: "sv24",
+                id_href: "#sv25",
+                question: 'どんなシーンを作ればいいか分からない',
+                answer: '作っても使わないことが多いので，深く考えずに量産すれば未来の自分が良いシーンを選び取ってくれます．量産が難しければ，時間帯を変えてみたり既存のシーンと光量・音量が異なるシーンを足していけばいいでしょう．'
+            },
+            {
+                id: 25,
+                id_html: 'sv25',
+                id_href: '#sv25',
+                question: 'プロットの終わらせ方が分からない',
+                answer: '「19. 不幸・欠如の解消」「30. 敵対者の処遇決定」のいずれかを「31. エンディング」の直前におくと作りやすいです．'
+            }
+        ],
+
         note: '',
 
-        // 次に追加される各種stateを決め打ち
+        // 次に追加される各種stateのidのデフォルト値
         nextActionId: 2,
         nextCharacterId: 4,
         nextWorldId:2,
@@ -281,7 +415,6 @@ export default new Vuex.Store ({
 
     actions: {
         // ADD_XXX の定義
-        // TODO: ADD_WORLD, ADD_WORLDPANEL
         [types.ADD_ACTION](
             {
                 commit,
@@ -337,28 +470,6 @@ export default new Vuex.Store ({
                 data: newCharacter
             })
         },
-
-        [types.ADD_WORLD](
-            {
-                commit,
-                state
-            },
-            {
-                name,
-                world_note
-            }
-        )
-        {
-            let newWorld = {
-                id: state.nextWorldId,
-                name: name,
-                world_note: world_note
-            }
-            commit(types.ADD_WORLD, {
-                data: newWorld
-            })
-        },
-
         [types.ADD_WORLD_PANEL](
             {
                 commit,
@@ -366,7 +477,6 @@ export default new Vuex.Store ({
             },
             {
                 name,
-                world_id,
                 light,
                 sound,
                 world_panel_note
@@ -376,7 +486,6 @@ export default new Vuex.Store ({
             let newWorldPanel = {
                 id: state.nextWorldPanelId,
                 name: name,
-                world_id: world_id,
                 light: light,
                 sound: sound,
                 world_panel_note: world_panel_note
@@ -384,10 +493,19 @@ export default new Vuex.Store ({
             commit(types.ADD_WORLD_PANEL, {
                 data: newWorldPanel
             })
+        },
+
+        // UPDATE_XXX の定義
+        // DELETE_XXX の定義
+        [types.DELETE_ACTION]({ commit }, index) {
+            commit(types.DELETE_ACTION, {
+                data: index
+            })
         }
     },
 
     mutations: {
+        // types.ADD_XXX
         [types.ADD_ACTION](state, payload) {
             state.actions.push(payload.data)
             state.nextActionId++
@@ -404,6 +522,33 @@ export default new Vuex.Store ({
             state.worldPanels.push(payload.data)
             state.nextWorldPanelId++
         },
+        // types.UPDATE_XXX
+        updateNote(state, note) {
+            state.note = note
+        },
+        updateCharacterName(state, name) {
+            state.characters.character.name = name
+        },
+        updateCharacterRoleId(state, role_id) {
+            state.characters.character.role_id = role_id
+        },
+        updateCharacterAge(state, age) {
+            state.characters.character.age = age
+        },
+        updateCharacterSex(state, sex) {
+            state.characters.character.sex = sex
+        },
+        updateCharacterApp(state, app) {
+            state.characters.character.app = app
+        },
+        updateCharacterNote(state, character_note) {
+            state.characters.character.character_note = character_note
+        },
+        // types.DELETE_XXX
+        [types.DELETE_ACTION](state, payload) {
+            state.actions.splice(payload.index, 1)
+            // これかObject.assignを用いる？
+        }
     },
 
     getters: {

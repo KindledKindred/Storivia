@@ -1,6 +1,5 @@
 <template lang="pug">
 #world.window
-	span.window_title WORLDS
 	.container-fluid
 		row
 			//- キャラクターパネルをロール(role_id)順にソートして全表示
@@ -22,17 +21,17 @@
 						input.form-control(v-model="name" placeholder="シーン名（時間帯）")
 					.form-part.col-md-4
 						label.form-label 光量
-						input.form-control.input-light(v-model="light" data-slider-ticks="[1,2,3,4,5]" data-slider-ticks-snap-bounds="1" data-slider-ticks-labels='["1","2","3","4","5"]')
+						vue-slider(v-model="light" v-bind="slider_options")
 					.form-part.col-md-4
 						label.form-label 音量
-						input.form-control.input-sound(v-model="sound" data-slider-ticks="[1,2,3,4,5]" data-slider-ticks-snap-bounds="1" data-slider-ticks-labels='["1","2","3","4","5"]')
+						vue-slider(v-model="sound" v-bind="slider_options")
 			row
 				.form-group
 					.form-part.col-md-12
 						label.form-label メモ
 						textarea.form-control(rows="5" v-model="world_panel_note" placeholder="自由にメモを取ることができます")
 		template(slot="footer")
-			button.btn.btn-primary(@click="ADD_CHARACTER({name, role_id, age, sex, app, character_note})") 追加
+			button.btn.btn-primary(@click="ADD_WORLD_PANEL({name, light, sound, world_panel_note})") 追加
 
 </template>
 
@@ -41,25 +40,51 @@ import SvWorldPanel from '../Molecules/SvWorldPanel'
 import SvModal from '../Templates/SvModal'
 import * as types from '../../store/mutation-types';
 import { mapState, mapGetters, mapActions }  from 'vuex'
-/*
-$("#ex13").slider({
-    ticks: [0, 100, 200, 300, 400],
-    ticks_labels: ['$0', '$100', '$200', '$300', '$400'],
-    ticks_snap_bounds: 30
-});
-*/
+import vueSlider from 'vue-slider-component'
+
 export default {
 	name: 'SvWorldWindow',
 
 	components: {
 		SvWorldPanel,
-		SvModal
+		SvModal,
+		vueSlider
 	},
 
 	data () {
     return {
 			modal: false,
-    }
+
+			/*** vue-slider-component の設定 ***/
+			slider_options: {
+				// 機能
+				tooltip: false,
+				piecewise: true,
+				piecewiseLabel: true,
+				// data
+				data: ["1","2","3","4","5"],
+				// style
+				bgStyle: {
+					"backgroundColor": "#9A8D72"
+				},
+				processStyle: {
+					"backgroundColor": "#F2F2E3"
+				},
+				piecewiseStyle: {
+					"backgroudColor": "#ccc",
+					"visibility": "visible",
+					"width": "16px",
+					"height": "16px"
+				},
+				piecewiseActiveStyle: {
+					"backgroundColor": "#9A8D72",
+					"color": "F2F2E3"
+				},
+				labelActiveStyle: {
+					"color": "#F2F2E3"
+				}
+			}
+		}
 	},
 
 	methods: {
@@ -72,7 +97,7 @@ export default {
 		},
 
 		// パネル追加
-		...mapActions([types.ADD_CHARACTER]),
+		...mapActions([types.ADD_WORLD_PANEL]),
 		// パネル追加時にモーダルの入力内容を初期化
 	},
 

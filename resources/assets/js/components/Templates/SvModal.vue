@@ -18,6 +18,8 @@ export default {
 
 <style lang="stylus" scoped>
 @import "../../../stylus/_variables.styl"
+// Form関連 を読み込む
+@import "../../../stylus/_extend.styl"
 
 .modal {
   &.modal-overlay {
@@ -34,19 +36,21 @@ export default {
   }
 
   &-window {
-    background: _background-color;
-    border-radius: 4px;
+    background: _dark-shades;
+    border-radius: 8px;
     overflow: hidden;
   }
 
   &-content {
-		background: _background-color;
+		background: _dark-shades;
+    border-radius: 8px
     padding: 10px 20px;
   }
 
   &-footer {
-    background-color: _background-color;
+    background-color: _dark-shades;
     padding: 10px;
+    border-radius: 8px
     text-align: right;
   }
 }
